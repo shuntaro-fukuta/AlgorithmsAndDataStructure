@@ -7,10 +7,11 @@ import algorithms.AlgorithmUtils;
 public class BubbleSort {
     public static void main(String[] args) {
         int[] targetNumbers = AlgorithmUtils.createRandomNums(10);
-        System.out.println(Arrays.toString(sort(targetNumbers)));
+        System.out.println(Arrays.toString(sortFromLeft(targetNumbers)));
+        System.out.println(Arrays.toString(sortFromRight(targetNumbers)));
     }
 
-    private static int[] sort(int[] numbers) {
+    private static int[] sortFromLeft(int[] numbers) {
         int startIndex = numbers.length - 1;
         int endIndex = 0;
         for (int i = 1; i < numbers.length; i++) {
@@ -22,6 +23,22 @@ public class BubbleSort {
                 }
             }
             endIndex++;
+        }
+
+        return numbers;
+    }
+
+    private static int[] sortFromRight(int[] numbers) {
+        int endIndex = numbers.length - 1;
+        for (int i = 0; i < endIndex; i++) {
+            for (int j = 0; j > endIndex; j++) {
+                int left = numbers[j];
+                int right = numbers[j+1];
+                if (left > right) {
+                    AlgorithmUtils.swap(numbers, left, right);
+                }
+            }
+            endIndex--;
         }
 
         return numbers;
